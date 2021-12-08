@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
-const stuffRoutes = require('./routes/stuff');
+const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://DavidNK:Proton7845_@cluster0.xuxnn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   });
 
   app.use('/images' , express.static(path.join(__dirname, 'images')));
-  app.use('/api/stuff' , stuffRoutes);
+  app.use('/api/sauces' , saucesRoutes);
   app.use('/api/auth', userRoutes);
 
 module.exports = app;
