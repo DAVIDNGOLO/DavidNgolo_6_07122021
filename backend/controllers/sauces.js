@@ -7,10 +7,7 @@ exports.createSauces = (req, res, next) => {
   const sauces = new Sauces({
     ...saucesObject,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-    likes: 0,
-    dislikes: 0,
-    usersLiked: [],
-    usersDisliked: []
+    
   }); //les images et textes douvent etre traité différement, elles sont appelées via leur URI
   sauces
     .save()
