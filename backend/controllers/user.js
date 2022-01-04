@@ -25,6 +25,7 @@ exports.login = (req, res, next) => {
       if (!user) {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
       }
+      //bcrypt : hachage sécurisé
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
@@ -34,7 +35,7 @@ exports.login = (req, res, next) => {
           res.status(200).json({
             userId: user._id,
             token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", { expiresIn: "24h" }),
-          });
+          })
         })
         .catch((error) => res.status(500).json({ error }));
     })
