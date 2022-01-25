@@ -8,7 +8,7 @@ exports.createSauces = (req, res, next) => {
     ...saucesObject,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
     
-  }); //les images et textes douvent etre traité différement, elles sont appelées via leur URI
+  }); //les images et textes doivent etre traité différement, elles sont appelées via leur URI
   sauces
     .save()
     .then(() => res.status(201).json({ message: "Objet enregistré !" }))
