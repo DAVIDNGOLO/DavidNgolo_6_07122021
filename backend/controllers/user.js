@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const MaskData = require("maskdata");
 
 const User = require("../models/user");
+
 const emailMask2Options = {
   maskWith: "*",
   unmaskedStartCharactersBeforeAt: 1,
