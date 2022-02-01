@@ -6,8 +6,8 @@ const User = require("../models/user");
 
 const emailMask2Options = {
   maskWith: "*",
-  unmaskedStartCharactersBeforeAt: 1,
-  unmaskedEndCharactersAfterAt: 4,
+  unmaskedStartCharactersBeforeAt: 3,
+  unmaskedEndCharactersAfterAt: 3,
   maskAtTheRate: false,
 };
 
