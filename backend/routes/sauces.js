@@ -1,6 +1,5 @@
 const express = require("express");
 
-
 //Définition des chemins sauces, athorisation et multer qui serviront pour le router
 
 const auth = require("../middleware/auth");
