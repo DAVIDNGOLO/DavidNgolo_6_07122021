@@ -15,7 +15,7 @@ exports.createSauces = (req, res, next) => {
 };
 
 exports.modifySauces = (req, res, next) => {
-  /*
+  
  
   let saucesObject = {};
   req.file ? (
@@ -40,17 +40,24 @@ exports.modifySauces = (req, res, next) => {
       ...req.body
     }
   )
-   */
-  const saucesObject = req.file
-    ? {
-        ...JSON.parse(req.body.sauce),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-      }
-    : { ...req.body }; //comme un url il faut definir le chemin avec un protocole http, un hote(localhost), et le nom du fichier
-  Sauces.updateOne({ _id: req.params.id }, { ...saucesObject, _id: req.params.id })
-    .then(() => res.status(200).json({ message: "Objet modifié !" }))
-    .catch((error) => res.status(400).json({ error }));
+  Sauces.updateOne(
+    // On applique les paramètre de sauceObject
+    {
+      _id: req.params.id
+    }, {
+      ...saucesObject,
+      _id: req.params.id
+    }
+  )
+  .then(() => res.status(200).json({
+    message: 'Sauce modifiée !'
+  }))
+  .catch((error) => res.status(400).json({
+    error
+  }))
 };
+   
+
 exports.deleteSauces = (req, res, next) => {
   Sauces.findOne({ _id: req.params.id })
     .then((sauces) => {
