@@ -2,7 +2,7 @@ const Sauces = require("../models/sauces");
 const fs = require("fs");
 
 exports.createSauces = (req, res, next) => {
-  const saucesObject = JSON.parse(req.body.sauces);
+  const saucesObject = JSON.parse(req.body.sauce);
   delete saucesObject._id;
   const sauces = new Sauces({
     ...saucesObject,
@@ -15,9 +15,35 @@ exports.createSauces = (req, res, next) => {
 };
 
 exports.modifySauces = (req, res, next) => {
+  /*
+ 
+  let saucesObject = {};
+  req.file ? (
+    // Si la modification contient une image => Utilisation de l'opérateur ternaire comme structure conditionnelle.
+    Sauces.findOne({
+      _id: req.params.id
+    }).then((sauces) => {
+      // On supprime l'ancienne image du serveur
+      const filename = sauces.imageUrl.split('/images/')[1]
+      fs.unlinkSync(`images/${filename}`)
+    }),
+    saucesObject = {
+      // On modifie les données et on ajoute la nouvelle image
+      ...JSON.parse(req.body.sauce),
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${
+        req.file.filename
+      }`,
+    }
+  ) : ( // Opérateur ternaire équivalent à if() {} else {} => condition ? Instruction si vrai : Instruction si faux
+    // Si la modification ne contient pas de nouvelle image
+    saucesObject = {
+      ...req.body
+    }
+  )
+   */
   const saucesObject = req.file
     ? {
-        ...JSON.parse(req.body.sauces),
+        ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
       }
     : { ...req.body }; //comme un url il faut definir le chemin avec un protocole http, un hote(localhost), et le nom du fichier

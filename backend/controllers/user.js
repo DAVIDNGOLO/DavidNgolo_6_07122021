@@ -6,8 +6,8 @@ const User = require("../models/user");
 
 const emailMask2Options = {
   maskWith: "*",
-  unmaskedStartCharactersBeforeAt: 3,
-  unmaskedEndCharactersAfterAt: 3,
+  unmaskedStartCharactersBeforeAt: 4,
+  unmaskedEndCharactersAfterAt: 4,
   maskAtTheRate: false,
 };
 
@@ -29,6 +29,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
+  
   User.findOne({ email: MaskData.maskEmail2(req.body.email, emailMask2Options) })
     .then((user) => {
       if (!user) {
