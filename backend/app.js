@@ -14,7 +14,7 @@ const dotenv = require("dotenv");
 // instantiate the instance of dotenv
 
 dotenv.config();
-/*
+
 //HELMET
 app.use(helmet.contentSecurityPolicy());
 app.use(helmet.crossOriginEmbedderPolicy());
@@ -31,13 +31,13 @@ app.use(helmet.originAgentCluster());
 app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
-*/
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, //15minutes
   max: 100, //limiter chaque adresse ip à 100 requêtes par windowMs
   message: "Trop de comptes ont été créés avec cette adresse IP",
 });
-//app.use(limiter);
+app.use(limiter);
 //connection à mongodb avec id et mot de passe (securisation dot.env)
 mongoose
   .connect(process.env.DATABASE_CONNEXION, { useNewUrlParser: true, useUnifiedTopology: true })
